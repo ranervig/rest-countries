@@ -1,8 +1,10 @@
-const Header = () => {
+const Header = ({ mode, changeMode }) => {
   return (
     <header>
       <h1>Header</h1>
-      <input></input>
+      <button onClick={changeMode}>
+        Switch to {mode ? "Light Mode" : "Dark Mode"}
+      </button>
     </header>
   );
 };
