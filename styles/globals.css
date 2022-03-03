@@ -6,6 +6,19 @@ body {
   margin: 0;
   font-family: "Nunito Sans", sans-serif;
 }
+body[data-theme="light"] {
+  --background: hsl(0, 0%, 98%);
+  --secondary: hsl(0, 0%, 100%);
+  --button: hsl(0, 0%, 100%);
+  --text: hsl(200, 15%, 8%);
+}
+
+body[data-theme="dark"] {
+  --background: hsl(207, 26%, 17%);
+  --secondary: hsl(209, 23%, 22%);
+  --button: hsl(0, 0%, 52%);
+  --text: hsl(0, 0%, 100%);
+}
 
 a {
   color: inherit;
