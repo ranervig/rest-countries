@@ -44,45 +44,58 @@ const Details = ({ country, borders }) => {
   //console.log(country);
   return (
     <main className={styles.country}>
-      <img alt={`${country.name.common} flag`} src={country.flags.svg} />
+      <Link href={"/"} passHref={true}>
+        <button className={styles.back}>&#x25c0;Back</button>
+      </Link>
       <div className={styles.info}>
-        <h1>
-          {country.name.common}
-          {country.flag}
-        </h1>
-        <ul>
-          <li>
-            Native Name: {Object.values(country.name.nativeName)[0].official}
-          </li>
-          <li>Population: {country.population.toLocaleString()}</li>
-          <li>Region: {country.region}</li>
-          <li>Sub Region: {country.subregion}</li>
-          <li>
-            Capital:{" "}
-            {country.capital
-              ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
-              : "Not Listed"}
-          </li>
-        </ul>
-        <ul>
-          <li>Top Level Domain: {country.tld ? country.tld[0] : "None"}</li>
-          <li>
-            Currencies:{" "}
-            {Object.values(country.currencies).map(cur => (
-              <span key={cur.name}>
-                {cur.name} {cur.symbol}
-              </span>
-            ))}
-          </li>
-          <li>Languages: {Object.values(country.languages).join(", ")}</li>
-        </ul>
-        <h3>Border Countries: </h3>
+        <img alt={`${country.name.common} flag`} src={country.flags.svg} />
         <div>
-          {borders.map(border => (
-            <Link href={`/${border.cca3}`} key={border.cca3} passHref={true}>
-              <button>{border.name}</button>
-            </Link>
-          ))}
+          <h1>
+            {country.name.common}
+            {country.flag}
+          </h1>
+          <ul>
+            <li>
+              Native Name: {Object.values(country.name.nativeName)[0].official}
+            </li>
+            <li>Population: {country.population.toLocaleString()}</li>
+            <li>Region: {country.region}</li>
+            <li>Sub Region: {country.subregion}</li>
+            <li>
+              Capital:{" "}
+              {country.capital
+                ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
+                : "Not Listed"}
+            </li>
+          </ul>
+          <ul>
+            <li>Top Level Domain: {country.tld ? country.tld[0] : "None"}</li>
+            <li>
+              Currencies:{" "}
+              {Object.values(country.currencies).map(cur => (
+                <span key={cur.name}>
+                  {cur.name} {cur.symbol}
+                </span>
+              ))}
+            </li>
+            <li>Languages: {Object.values(country.languages).join(", ")}</li>
+          </ul>
+          <h3>Border Countries: </h3>
+          <div>
+            {borders ? (
+              borders.map(border => (
+                <Link
+                  href={`/${border.cca3}`}
+                  key={border.cca3}
+                  passHref={true}
+                >
+                  <button>{border.name}</button>
+                </Link>
+              ))
+            ) : (
+              <div>None</div>
+            )}
+          </div>
         </div>
       </div>
     </main>
