@@ -1,10 +1,12 @@
+import styles from "../styles/Header.module.css";
+
 const Header = ({ mode, changeMode }) => {
   return (
-    <header>
-      <h1>Header</h1>
-      <button onClick={changeMode}>
-        Switch to {mode ? "Light Mode" : "Dark Mode"}
-      </button>
+    <header className={styles.head}>
+      <h1>Where in the world?</h1>
+      <div onClick={changeMode} className={styles.mode}>
+        &#x25d1;{mode ? "Light Mode" : "Dark Mode"}
+      </div>
     </header>
   );
 };
