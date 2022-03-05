@@ -1,0 +1,11 @@
+.head {
+  background-color: var(--secondary);
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+}
+
+.mode {
+  align-self: center;
+  padding: 0.5rem;
+}

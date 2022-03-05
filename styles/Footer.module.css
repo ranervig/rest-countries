@@ -1,0 +1,6 @@
+.foot {
+  background-color: var(--secondary);
+  color: var(--text);
+  text-align: center;
+  padding: 1rem;
+}
