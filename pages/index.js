@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
 
 export default function Home({ countries }) {
   return (
-    <div>
+    <div className={styles.countries}>
       <Head>
         <title>REST Countries</title>
         <meta name="description" content="Country Information" />
