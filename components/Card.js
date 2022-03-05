@@ -1,26 +1,28 @@
-import Image from "next/image";
+import Link from "next/link";
+import styles from "../styles/Card.module.css";
 
 const Card = ({ country }) => {
   return (
-    <div>
-      <Image
-        src={country.flags.svg}
-        alt={`Flag of ${country.name.common}`}
-        height="100"
-        width="200"
-      />
-      <h4>{country.name.common}</h4>
-      <ul>
-        <li>Population: {country.population.toLocaleString()}</li>
-        <li>Region: {country.region}</li>
-        <li>
-          Capital:{" "}
-          {country.capital
-            ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
-            : "Not Listed"}
-        </li>
-      </ul>
-    </div>
+    <Link href={`/${country.cca3.toLowerCase()}`} passHref={true}>
+      <div className={styles.card}>
+        <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
+        <h3>{country.name.common}</h3>
+        <ul>
+          <li>
+            <strong>Population:</strong> {country.population.toLocaleString()}
+          </li>
+          <li>
+            <strong>Region:</strong> {country.region}
+          </li>
+          <li>
+            <strong>Capital:</strong>{" "}
+            {country.capital
+              ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
+              : "Not Listed"}
+          </li>
+        </ul>
+      </div>
+    </Link>
   );
 };
 
