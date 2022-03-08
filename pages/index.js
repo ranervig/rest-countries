@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState, useEffect } from "react/cjs/react.development";
 import Card from "../components/Card";
 import styles from "../styles/Home.module.css";
 
@@ -12,6 +13,21 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ countries }) {
+  const [region, setRegion] = useState("All");
+  const [displayCountries, setDisplayCountries] = useState(countries);
+
+  useEffect(() => {
+    setDisplayCountries(
+      region === "All"
+        ? countries
+        : countries.filter(country => country.region === region)
+    );
+  }, [region, countries]);
+
+  const chooseRegion = event => {
+    setRegion(event.target.value);
+  };
+
   return (
     <div className={styles.countries}>
       <Head>
@@ -19,7 +35,18 @@ export default function Home({ countries }) {
         <meta name="description" content="Country Information" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {countries.map(country => (
+      <div className={styles.input}>
+        <input type={"search"}></input>
+        <select onChange={chooseRegion} className={styles.region}>
+          <option value={"All"}>All</option>
+          <option value={"Africa"}>Africa</option>
+          <option value={"Americas"}>Americas</option>
+          <option value={"Asia"}>Asia</option>
+          <option value={"Europe"}>Europe</option>
+          <option value={"Oceania"}>Oceania</option>
+        </select>
+      </div>
+      {displayCountries.map(country => (
         <Card country={country} key={country.cca3} />
       ))}
     </div>
