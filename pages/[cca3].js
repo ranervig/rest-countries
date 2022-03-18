@@ -1,5 +1,7 @@
 import styles from "../styles/Country.module.css";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
@@ -45,7 +47,10 @@ const Details = ({ country, borders }) => {
   return (
     <main className={styles.country}>
       <Link href={"/"} passHref={true}>
-        <button className={styles.back}>&#x25c0;Back</button>
+        <button className={styles.back}>
+          <FontAwesomeIcon icon={faAngleLeft} size={"1x"} />
+          &nbsp; Back
+        </button>
       </Link>
       <div className={styles.info}>
         <img alt={`${country.name.common} flag`} src={country.flags.svg} />
