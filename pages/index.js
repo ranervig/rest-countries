@@ -19,7 +19,8 @@ export const getStaticProps = async () => {
       capital: country.capital ? country.capital : null,
     };
   });
-
+  //sort  countries alphabetically
+  countries.sort((a, b) => (a.name.common > b.name.common ? 1 : -1));
   return {
     props: { countries },
   };
@@ -28,6 +29,7 @@ export const getStaticProps = async () => {
 export default function Home({ countries }) {
   const [region, setRegion] = useState("All");
   const [displayCountries, setDisplayCountries] = useState(countries);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     setDisplayCountries(
@@ -35,10 +37,25 @@ export default function Home({ countries }) {
         ? countries
         : countries.filter(country => country.region === region)
     );
-  }, [region, countries]);
+  }, [search, region, countries]);
+
+  useEffect(() => {
+    if (search) {
+      document.querySelector("input");
+      setDisplayCountries(
+        countries.filter(country =>
+          country.name.common.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, countries]);
 
   const chooseRegion = event => {
     setRegion(event.target.value);
+  };
+
+  const changeSearch = event => {
+    setSearch(event.target.value);
   };
 
   return (
@@ -53,14 +70,9 @@ export default function Home({ countries }) {
           <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
           <input
             type={"search"}
-            list={"country list"}
             placeholder={"Search for a country..."}
+            onChange={changeSearch}
           />
-          <datalist id={"country list"}>
-            {countries.map(country => (
-              <option value={country.name.common} key={country.cca3} />
-            ))}
-          </datalist>
         </div>
 
         <select onChange={chooseRegion} className={styles.region}>
