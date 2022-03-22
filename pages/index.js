@@ -41,7 +41,7 @@ export default function Home({ countries }) {
 
   useEffect(() => {
     if (search) {
-      document.querySelector("input");
+      document.querySelector("select").value = "All"; //reset region to all countries
       setDisplayCountries(
         countries.filter(country =>
           country.name.common.toLowerCase().includes(search.toLowerCase())
@@ -84,9 +84,13 @@ export default function Home({ countries }) {
           <option value={"Oceania"}>Oceania</option>
         </select>
       </div>
-      {displayCountries.map(country => (
-        <Card country={country} key={country.cca3} />
-      ))}
+      {displayCountries.length > 0 ? (
+        displayCountries.map(country => (
+          <Card country={country} key={country.cca3} />
+        ))
+      ) : (
+        <h3>{"No Countries Matching Search"}</h3>
+      )}
     </div>
   );
 }
