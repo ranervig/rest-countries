@@ -1,9 +1,49 @@
 .countries {
+  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
   background-color: var(--background);
   color: var(--text);
   padding: 2rem;
   box-shadow: inset 0px 1px 3px var(--shadow);
+}
+
+.input {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input :is(input, select) {
+  height: min-content;
+  padding: 0.5rem;
+  color: var(--text);
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 3px var(--shadow);
+}
+
+.search {
+  position: relative;
+  width: min(22rem, 100% - 4rem);
+}
+
+.search input {
+  padding-left: 2rem;
+  width: 100%;
+}
+
+.search input::placeholder {
+  color: var(--text);
+  opacity: 1;
+}
+
+.icon {
+  height: 1rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  position: absolute;
 }
