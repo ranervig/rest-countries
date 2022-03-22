@@ -59,32 +59,42 @@ const Details = ({ country, borders }) => {
             {country.name.common}
             {country.flag}
           </h1>
-          <ul>
-            <li>
-              Native Name: {Object.values(country.name.nativeName)[0].official}
-            </li>
-            <li>Population: {country.population.toLocaleString()}</li>
-            <li>Region: {country.region}</li>
-            <li>Sub Region: {country.subregion}</li>
-            <li>
-              Capital:{" "}
-              {country.capital
-                ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
-                : "Not Listed"}
-            </li>
-          </ul>
-          <ul>
-            <li>Top Level Domain: {country.tld ? country.tld[0] : "None"}</li>
-            <li>
-              Currencies:{" "}
-              {Object.values(country.currencies).map(cur => (
-                <span key={cur.name}>
-                  {cur.name} {cur.symbol}
-                </span>
-              ))}
-            </li>
-            <li>Languages: {Object.values(country.languages).join(", ")}</li>
-          </ul>
+          <p>
+            Native Name:{" "}
+            {country.name.nativeName
+              ? Object.values(country.name.nativeName)[0].official
+              : country.name.official}
+            <br />
+            Population: {country.population.toLocaleString()}
+            <br />
+            Region: {country.region}
+            <br />
+            Sub Region: {country.subregion}
+            <br />
+            Capital:{" "}
+            {country.capital
+              ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
+              : "Not Listed"}
+            <br />
+          </p>
+          <p>
+            Top Level Domain: {country.tld ? country.tld[0] : "None"}
+            <br />
+            Currencies:{" "}
+            {country.currencies
+              ? Object.values(country.currencies).map(cur => (
+                  <span key={cur.name}>
+                    {cur.name} {cur.symbol}
+                  </span>
+                ))
+              : "Not Listed"}
+            <br />
+            Languages:{" "}
+            {country.languages
+              ? Object.values(country.languages).join(", ")
+              : "Not Listed"}
+            <br />
+          </p>
           <h3>Border Countries: </h3>
           <div>
             {borders ? (
