@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState, useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
