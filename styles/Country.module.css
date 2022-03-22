@@ -7,14 +7,18 @@
 }
 
 .info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 50%));
+  justify-items: center;
+  padding: 1rem;
+}
+
+.info li {
+  list-style: none;
 }
 
 .country img {
   max-width: 100%;
-  margin-right: 2rem;
 }
 
 .country button {
