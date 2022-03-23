@@ -7,4 +7,4 @@ This website pulls data from the REST Countries API and displays it in an usable
 ### Built With
 
 - [Next.js](https://nextjs.org)
-- [REST Countries](https://restcountreis.com)
+- [REST Countries](https://restcountries.com)
