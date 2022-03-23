@@ -48,7 +48,11 @@ const Details = ({ country, borders }) => {
     <main className={styles.country}>
       <Link href={"/"} passHref={true}>
         <button className={styles.back}>
-          <FontAwesomeIcon icon={faAngleLeft} size={"1x"} />
+          <FontAwesomeIcon
+            icon={faAngleLeft}
+            size={"1x"}
+            className={styles.icon}
+          />
           &nbsp; Back
         </button>
       </Link>
