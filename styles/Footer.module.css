@@ -3,4 +3,5 @@
   color: var(--text);
   text-align: center;
   padding: 1rem;
+  transition: all 0.5s;
 }

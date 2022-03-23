@@ -4,6 +4,7 @@
   height: 100vh;
   box-shadow: inset 0px 1px 3px var(--shadow), inset 0px -1px 3px var(--shadow);
   padding: 2rem;
+  transition: all 0.5s;
 }
 
 .info {

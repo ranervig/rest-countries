@@ -6,6 +6,7 @@
   padding: 1rem;
   background-color: var(--secondary);
   box-shadow: 1px 1px 3px var(--shadow);
+  transition: all 0.5s;
 }
 
 .card h3,
