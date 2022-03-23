@@ -2,7 +2,7 @@
   min-width: 200px;
   display: flex;
   flex-direction: column;
-  border-radius: 1rem;
+  border-radius: 0.25rem;
   padding: 1rem;
   background-color: var(--secondary);
   box-shadow: 1px 1px 3px var(--shadow);
