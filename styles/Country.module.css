@@ -38,3 +38,8 @@
   padding: 0.5rem 1rem;
   margin: 1rem;
 }
+
+.icon {
+  height: 1rem;
+  vertical-align: bottom;
+}
