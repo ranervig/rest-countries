@@ -60,7 +60,7 @@ const Details = ({ country, borders }) => {
         <img alt={`${country.name.common} flag`} src={country.flags.svg} />
         <div>
           <h1>
-            {country.name.common}
+            {country.name.common} &nbsp;
             {country.flag}
           </h1>
           <p>
