@@ -43,7 +43,6 @@ export const getStaticProps = async context => {
 };
 
 const Details = ({ country, borders }) => {
-  //console.log(country);
   return (
     <main className={styles.country}>
       <Link href={"/"} passHref={true}>
