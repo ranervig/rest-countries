@@ -18,6 +18,8 @@
 }
 
 .input :is(input, select) {
+  appearance: none;
+  margin: .25rem;
   height: min-content;
   padding: 0.5rem;
   color: var(--text);
@@ -33,6 +35,31 @@
   width: min(22rem, 100% - 4rem);
 }
 
+.regionSelect{
+  min-width: 9rem;
+  grid-template-areas: "select";
+  display: grid;
+  align-items: center;
+}
+
+.region {
+  width: 100%;
+}
+
+.region,
+.regionSelect::after{
+  grid-area: select;
+}
+
+.regionSelect::after{
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--text);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
+}
+
 .search input {
   padding-left: 2rem;
   width: 100%;
@@ -45,7 +72,7 @@
 
 .icon {
   height: 1rem;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: .75rem;
+  left: .75rem;
   position: absolute;
 }
