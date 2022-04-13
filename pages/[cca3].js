@@ -2,6 +2,8 @@ import styles from "../styles/Country.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import Head from "next/head";
+import Image from "next/image";
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
@@ -44,79 +46,95 @@ export const getStaticProps = async context => {
 
 const Details = ({ country, borders }) => {
   return (
-    <main className={styles.country}>
-      <Link href={"/"} passHref={true}>
-        <button className={styles.back}>
-          <FontAwesomeIcon
-            icon={faAngleLeft}
-            size={"1x"}
-            className={styles.icon}
-          />
-          &nbsp; Back
-        </button>
-      </Link>
-      <div className={styles.info}>
-        <img alt={`${country.name.common} flag`} src={country.flags.svg} />
-        <div>
-          <h1>
-            {country.name.common} &nbsp;
-            {country.flag}
-          </h1>
-          <p>
-            Native Name:{" "}
-            {country.name.nativeName
-              ? Object.values(country.name.nativeName)[0].official
-              : country.name.official}
-            <br />
-            Population: {country.population.toLocaleString()}
-            <br />
-            Region: {country.region}
-            <br />
-            Sub Region: {country.subregion}
-            <br />
-            Capital:{" "}
-            {country.capital
-              ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
-              : "Not Listed"}
-            <br />
-          </p>
-          <p>
-            Top Level Domain: {country.tld ? country.tld[0] : "None"}
-            <br />
-            Currencies:{" "}
-            {country.currencies
-              ? Object.values(country.currencies).map(cur => (
-                  <span key={cur.name}>
-                    {cur.name} {cur.symbol}
-                  </span>
-                ))
-              : "Not Listed"}
-            <br />
-            Languages:{" "}
-            {country.languages
-              ? Object.values(country.languages).join(", ")
-              : "Not Listed"}
-            <br />
-          </p>
-          <h3>Border Countries: </h3>
+    <>
+      <Head>
+        <title>{country.name.common}</title>
+      </Head>
+      <main className={styles.country}>
+        <Link href={"/"} passHref={true}>
+          <button className={styles.back}>
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              size={"1x"}
+              className={styles.icon}
+            />
+            &nbsp; Back
+          </button>
+        </Link>
+        <div className={styles.info}>
+          <>
+            <div className={styles.image}>
+              <Image
+                alt={`${country.name.common} flag`}
+                src={country.flags.svg}
+                layout={"fill"}
+                objectFit={"scale-down"}
+                priority
+              />
+            </div>
+          </>
+
           <div>
-            {borders ? (
-              borders.map(border => (
-                <Link
-                  href={`/${border.cca3}`}
-                  key={border.cca3}
-                  passHref={true}
-                >
-                  <button>{border.name}</button>
-                </Link>
-              ))
-            ) : (
-              <div>None</div>
-            )}
+            <h1>
+              {country.name.common} &nbsp;
+              {country.flag}
+            </h1>
+            <p>
+              Native Name:{" "}
+              {country.name.nativeName
+                ? Object.values(country.name.nativeName)[0].official
+                : country.name.official}
+              <br />
+              Population: {country.population.toLocaleString()}
+              <br />
+              Region: {country.region}
+              <br />
+              Sub Region: {country.subregion}
+              <br />
+              Capital:{" "}
+              {country.capital
+                ? country.capital.map(cap => <span key={cap}>{cap}</span>) // Solve outlier case for South Africa with 3 capitals
+                : "Not Listed"}
+              <br />
+            </p>
+            <p>
+              Top Level Domain: {country.tld ? country.tld[0] : "None"}
+              <br />
+              Currencies:{" "}
+              {country.currencies
+                ? Object.values(country.currencies).map(cur => (
+                    <span key={cur.name}>
+                      {cur.name} {cur.symbol}
+                    </span>
+                  ))
+                : "Not Listed"}
+              <br />
+              Languages:{" "}
+              {country.languages
+                ? Object.values(country.languages).join(", ")
+                : "Not Listed"}
+              <br />
+            </p>
+            <h3>Border Countries: </h3>
+            <div>
+              {borders ? (
+                borders.map(border => (
+                  <Link
+                    href={`/${border.cca3}`}
+                    key={border.cca3}
+                    passHref={true}
+                  >
+                    <button>{border.name}</button>
+                  </Link>
+                ))
+              ) : (
+                <div>None</div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

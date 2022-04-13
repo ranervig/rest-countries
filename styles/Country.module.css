@@ -9,7 +9,7 @@
 
 .info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   justify-items: center;
   padding: 1rem;
   gap: 1rem;
@@ -19,8 +19,18 @@
   list-style: none;
 }
 
-.country img {
-  max-width: 100%;
+.country .image {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+}
+
+@media screen and (min-width: 47rem) {
+  .country .image {
+    position: relative;
+    width: calc(50vw - 4rem);
+    height: 50vh;
+  }
 }
 
 .country button {

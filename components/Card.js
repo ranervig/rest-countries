@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Card.module.css";
 
@@ -5,7 +6,14 @@ const Card = ({ country }) => {
   return (
     <Link href={`/${country.cca3.toLowerCase()}`} passHref={true}>
       <div className={styles.card}>
-        <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
+        <div className={styles.image}>
+          <Image
+            src={country.flags.svg}
+            alt={`Flag of ${country.name.common}`}
+            layout={"fill"}
+            objectFit={"scale-down"}
+          />
+        </div>
         <h3>{country.name.common}</h3>
         <ul>
           <li>

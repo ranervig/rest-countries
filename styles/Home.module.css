@@ -1,7 +1,7 @@
 .countries {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 3rem;
   background-color: var(--background);
   color: var(--text);
@@ -36,6 +36,7 @@
 }
 
 .regionSelect{
+  height: 1rem;
   min-width: 9rem;
   grid-template-areas: "select";
   display: grid;
